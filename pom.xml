@@ -7,10 +7,10 @@
     <version>3.5.0</version>
     <relativePath/>
   </parent>
-  <groupId>com.mrlonis.example</groupId>
-  <artifactId>demo</artifactId>
+  <groupId>com.mrlonis.example.ai</groupId>
+  <artifactId>example-spring-boot-ai-app</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>demo</name>
+  <name>example-spring-boot-ai-app</name>
   <description>Demo project for Spring Boot</description>
   <properties>
     <cleanthat.version>2.22</cleanthat.version>

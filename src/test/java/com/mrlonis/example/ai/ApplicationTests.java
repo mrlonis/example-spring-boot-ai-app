@@ -1,12 +1,13 @@
-package com.mrlonis.example.demo;
+package com.mrlonis.example.ai;
 
+import com.mrlonis.example.ai.test.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
-class DemoApplicationTests {
+class ApplicationTests {
 
     @Test
     void contextLoads() {}

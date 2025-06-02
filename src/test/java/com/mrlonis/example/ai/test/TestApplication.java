@@ -1,11 +1,11 @@
-package com.mrlonis.example.demo;
+package com.mrlonis.example.ai.test;
 
+import com.mrlonis.example.ai.Application;
 import org.springframework.boot.SpringApplication;
 
-public class TestDemoApplication {
-
+public class TestApplication {
     public static void main(String[] args) {
-        SpringApplication.from(DemoApplication::main)
+        SpringApplication.from(Application::main)
                 .with(TestcontainersConfiguration.class)
                 .run(args);
     }
