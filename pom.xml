@@ -573,6 +573,9 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
+          <environmentVariables>
+            <OPENAI_API_KEY>${OPENAI_API_KEY}</OPENAI_API_KEY>
+          </environmentVariables>
           <excludes>
             <exclude>
               <groupId>org.projectlombok</groupId>
