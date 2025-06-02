@@ -1,4 +1,4 @@
-HELP.md
+!HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -14,7 +14,9 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/**
+!.idea/runConfigurations
+!.idea/runConfigurations/**
 *.iws
 *.iml
 *.ipr
@@ -31,3 +33,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Custom ###
+.env
