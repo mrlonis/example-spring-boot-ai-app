@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="mvn verify" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="mvn versions:display-property-updates" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
@@ -11,8 +11,7 @@
           </option>
           <option name="goals">
             <list>
-              <option value="spotless:apply" />
-              <option value="verify" />
+              <option value="versions:display-property-updates" />
             </list>
           </option>
           <option name="multimoduleDir" />
