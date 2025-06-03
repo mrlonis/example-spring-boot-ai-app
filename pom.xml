@@ -245,11 +245,6 @@
     </dependency>
     <dependency>
       <groupId>org.testcontainers</groupId>
-      <artifactId>ollama</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
       <artifactId>postgresql</artifactId>
       <scope>test</scope>
     </dependency>
@@ -573,9 +568,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <environmentVariables>
-            <OPENAI_API_KEY>${OPENAI_API_KEY}</OPENAI_API_KEY>
-          </environmentVariables>
+          <jvmArguments>-DOPENAI_API_KEY=${env.OPENAI_API_KEY}</jvmArguments>
           <excludes>
             <exclude>
               <groupId>org.projectlombok</groupId>
