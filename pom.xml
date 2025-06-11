@@ -568,7 +568,10 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <jvmArguments>-DOPENAI_API_KEY=${env.OPENAI_API_KEY}</jvmArguments>
+          <jvmArguments>-DOPENAI_API_KEY=${OPENAI_API_KEY}</jvmArguments>
+          <environmentVariables>
+            <OPENAI_API_KEY>${OPENAI_API_KEY}</OPENAI_API_KEY>
+          </environmentVariables>
           <excludes>
             <exclude>
               <groupId>org.projectlombok</groupId>
