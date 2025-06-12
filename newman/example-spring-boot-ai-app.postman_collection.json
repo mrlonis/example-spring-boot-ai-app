@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "b5ade2ab-ed9e-4429-a17b-9c8276033136",
+		"name": "example-spring-boot-ai-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10017040"
+	},
+	"item": [
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Actuator",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response Status Code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response Status Code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat Controller",
+			"item": [
+				{
+					"name": "/ai",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ai?userInput=Hello",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ai"
+							],
+							"query": [
+								{
+									"key": "userInput",
+									"value": "Hello"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ai/embedding",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ai/embedding?message=Hello",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ai",
+								"embedding"
+							],
+							"query": [
+								{
+									"key": "message",
+									"value": "Hello"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ai/vector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ai/vector?query=Spring",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ai",
+								"vector"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Spring"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
