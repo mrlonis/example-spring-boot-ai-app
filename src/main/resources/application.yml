@@ -2,6 +2,11 @@ spring:
   application:
     name: example-spring-boot-ai-app
   ai:
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
     openai:
       api-key: ${OPENAI_API_KEY}
     vectorstore:

@@ -103,6 +103,33 @@
 					"response": []
 				},
 				{
+					"name": "/ai - Chat Memory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ai?userInput=Hello&conversationId=lonis",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ai"
+							],
+							"query": [
+								{
+									"key": "userInput",
+									"value": "Hello"
+								},
+								{
+									"key": "conversationId",
+									"value": "lonis"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/ai/embedding",
 					"request": {
 						"method": "GET",
