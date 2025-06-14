@@ -39,7 +39,7 @@ class ChatController {
     }
 
     @GetMapping("/ai")
-    String generation(String userInput) {
+    public String generation(String userInput) {
         return this.chatClient.prompt().user(userInput).call().content();
     }
 
