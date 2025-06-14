@@ -19,12 +19,14 @@
     <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
     <java.version>21</java.version>
     <okhttp-bom.version>4.12.0</okhttp-bom.version>
-    <org.checkerframework.version>3.49.3</org.checkerframework.version>
-    <palantir-java-format.version>2.67.0</palantir-java-format.version>
+    <org.checkerframework.version>3.49.4</org.checkerframework.version>
+    <palantir-java-format.version>2.68.0</palantir-java-format.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
     <spotless.version>2.44.5</spotless.version>
     <spring-ai.version>1.0.0</spring-ai.version>
+    <spring-cloud-contract-maven-plugin.version>4.3.0</spring-cloud-contract-maven-plugin.version>
     <spring-cloud.version>2025.0.0</spring-cloud.version>
     <spring-restdocs.version>3.0.3</spring-restdocs.version>
     <testcontainers.version>1.21.1</testcontainers.version>
@@ -410,6 +412,14 @@
               </config>
             </prettier>
           </sql>
+          <groovy>
+            <includes>
+              <include>src/test/resources/**/*.groovy</include>
+            </includes>
+            <importOrder/>
+            <removeSemicolons/>
+            <greclipse/>
+          </groovy>
         </configuration>
         <executions>
           <execution>
@@ -480,6 +490,16 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <argLine>${argLine}</argLine>
+          <environmentVariables>
+            <OPENAI_API_KEY>${OPENAI_API_KEY}</OPENAI_API_KEY>
+          </environmentVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <argLine>${argLine} -XX:+EnableDynamicAgentLoading</argLine>
@@ -516,7 +536,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>properties-maven-plugin</artifactId>
-        <version>1.2.1</version>
+        <version>${properties-maven-plugin.version}</version>
         <executions>
           <execution>
             <goals>
@@ -583,9 +603,10 @@
       <plugin>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-        <version>4.2.1</version>
+        <version>${spring-cloud-contract-maven-plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
+          <baseClassForTests>com.mrlonis.example.ai.test.ContractBase</baseClassForTests>
           <failOnNoContracts>false</failOnNoContracts>
           <testFramework>JUNIT5</testFramework>
         </configuration>
