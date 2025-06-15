@@ -1,5 +1,6 @@
 package com.mrlonis.example.ai.controller;
 
+import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -42,26 +43,32 @@ class ChatController {
                 .build();
         this.embeddingModel = embeddingModel;
         this.vectorStore = vectorStore;
+    }
 
+    @PostConstruct
+    public void init() {
         vectorStore.<JdbcTemplate>getNativeClient().ifPresent(jdbcTemplate -> {
             boolean hasRows = Boolean.TRUE.equals(
                     jdbcTemplate.queryForObject("SELECT EXISTS (SELECT 1 FROM vector_store)", Boolean.class));
             if (!hasRows) {
                 log.info("No Documents found in the vector store. Initializing with sample data.");
-                List<Document> documents = List.of(
-                        new Document(
-                                "Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!!",
-                                Map.of("meta1", "meta1")),
-                        new Document("The World is Big and Salvation Lurks Around the Corner"),
-                        new Document(
-                                "You walk forward facing the past and you turn back toward the future.",
-                                Map.of("meta2", "meta2")));
-                vectorStore.add(documents);
-                log.info("Added {} Documents to the vector store.", documents.size());
+                vectorStore.add(generateDefaultDocuments());
+                log.info("Added Default Documents to the vector store.");
             } else {
                 log.info("Found Documents in the vector store.");
             }
         });
+    }
+
+    private static List<Document> generateDefaultDocuments() {
+        return List.of(
+                new Document(
+                        "Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!! Spring AI rocks!!",
+                        Map.of("meta1", "meta1")),
+                new Document("The World is Big and Salvation Lurks Around the Corner"),
+                new Document(
+                        "You walk forward facing the past and you turn back toward the future.",
+                        Map.of("meta2", "meta2")));
     }
 
     @GetMapping("/ai")
