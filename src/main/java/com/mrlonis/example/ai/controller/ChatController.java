@@ -1,9 +1,12 @@
 package com.mrlonis.example.ai.controller;
 
+import com.mrlonis.example.ai.entity.Summarization;
+import com.mrlonis.example.ai.repository.SummarizationRepository;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -27,11 +30,13 @@ class ChatController {
     private final ChatClient chatClient;
     private final EmbeddingModel embeddingModel;
     private final VectorStore vectorStore;
+    private final SummarizationRepository summarizationRepository;
 
     public ChatController(
             ChatClient.Builder chatClientBuilder,
             EmbeddingModel embeddingModel,
             VectorStore vectorStore,
+            SummarizationRepository summarizationRepository,
             JdbcChatMemoryRepository chatMemoryRepository) {
         ChatMemory chatMemory = MessageWindowChatMemory.builder()
                 .chatMemoryRepository(chatMemoryRepository)
@@ -43,6 +48,7 @@ class ChatController {
                 .build();
         this.embeddingModel = embeddingModel;
         this.vectorStore = vectorStore;
+        this.summarizationRepository = summarizationRepository;
     }
 
     @PostConstruct
@@ -86,12 +92,30 @@ class ChatController {
     }
 
     @GetMapping("/ai/summarize")
-    public String summarization(@RequestParam String userInput) {
-        return this.chatClient
+    public String summarization(@RequestParam String userInput, @RequestParam boolean saveSummary) {
+        var optionalSummarization = this.summarizationRepository.findByUserInput(userInput);
+
+        if (optionalSummarization.isPresent()) {
+            log.info("Found existing summarization: {}", optionalSummarization.get());
+            return optionalSummarization.get().getSummary();
+        }
+
+        var summary = this.chatClient
                 .prompt("Summarize the following content:")
                 .user(userInput)
                 .call()
                 .content();
+        if (saveSummary && StringUtils.isNotBlank(summary)) {
+            var summarization = Summarization.builder()
+                    .userInput(userInput)
+                    .summary(summary)
+                    .build();
+            this.summarizationRepository.save(summarization);
+            log.info("Saved summarization: {}", summarization);
+        } else {
+            log.info("Did not save summarization.");
+        }
+        return summary;
     }
 
     @GetMapping("/ai/embedding")
