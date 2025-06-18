@@ -85,6 +85,15 @@ class ChatController {
         return this.chatClient.prompt().user(userInput).call().content();
     }
 
+    @GetMapping("/ai/summarize")
+    public String summarization(@RequestParam String userInput) {
+        return this.chatClient
+                .prompt("Summarize the following content:")
+                .user(userInput)
+                .call()
+                .content();
+    }
+
     @GetMapping("/ai/embedding")
     public Map<String, EmbeddingResponse> embed(@RequestParam String message) {
         EmbeddingResponse embeddingResponse = this.embeddingModel.embedForResponse(List.of(message));
