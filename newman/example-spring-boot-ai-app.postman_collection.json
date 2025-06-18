@@ -130,6 +130,30 @@
 					"response": []
 				},
 				{
+					"name": "/ai/summarize",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ai/summarize?userInput=Title: The Elevator to Nowhere Janice stepped into the elevator on the 14th floor of her apartment building, juggling groceries and her dying phone. She pressed %26quot;L%26quot; for lobby, but the elevator jolted, blinked, and instead began moving%26amp;%238230; up. She sighed.\nTypical. The numbers climbed: 15%26amp;%238230; 16%26amp;%238230; 17%26amp;%238230; past the known top floor. 18. 19. 20. Then: BELL. The doors opened. Instead of a hallway, there was a vast, sunlit prairie. Birds wheeled overhead. A breeze carried the smell of grass and possibility.\nA man in a bathrobe stood just outside the doors. %26amp;%238220;Don%26amp;%238217;t worry,%26amp;%238221; he said, sipping tea. %26amp;%238220;It%26amp;%238217;s different every time.%26amp;%238221; Janice said nothing. She stepped out. The elevator vanished behind her. Summary for another LLM: A\nwoman boards an elevator expecting to descend, but it rises past the building%26amp;%238217;s top floor and opens into a surreal alternate world. A man in a bathrobe hints at a larger mystery. She chooses to step out, leaving her normal life behind.",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ai",
+								"summarize"
+							],
+							"query": [
+								{
+									"key": "userInput",
+									"value": "Title: The Elevator to Nowhere Janice stepped into the elevator on the 14th floor of her apartment building, juggling groceries and her dying phone. She pressed %26quot;L%26quot; for lobby, but the elevator jolted, blinked, and instead began moving%26amp;%238230; up. She sighed.\nTypical. The numbers climbed: 15%26amp;%238230; 16%26amp;%238230; 17%26amp;%238230; past the known top floor. 18. 19. 20. Then: BELL. The doors opened. Instead of a hallway, there was a vast, sunlit prairie. Birds wheeled overhead. A breeze carried the smell of grass and possibility.\nA man in a bathrobe stood just outside the doors. %26amp;%238220;Don%26amp;%238217;t worry,%26amp;%238221; he said, sipping tea. %26amp;%238220;It%26amp;%238217;s different every time.%26amp;%238221; Janice said nothing. She stepped out. The elevator vanished behind her. Summary for another LLM: A\nwoman boards an elevator expecting to descend, but it rises past the building%26amp;%238217;s top floor and opens into a surreal alternate world. A man in a bathrobe hints at a larger mystery. She chooses to step out, leaving her normal life behind."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/ai/embedding",
 					"request": {
 						"method": "GET",
